@@ -1,0 +1,88 @@
+{
+    "guid": "test",
+    "metadata": {
+        "learningArea": {
+            "subject": "math",
+            "subjectArea": "",
+            "topic": [
+                ""
+            ]
+        },
+        "copiedFrom": "GUID",
+        "createdAt": "2015-01-11T14:12:22",
+        "modifiedAt": "2015-01-11T14:12:22",
+        "authors": [
+            "Doe, John"
+        ],
+        "license": "Creative Commons",
+        "locale": "en_US",
+        "title": "",
+        "~doc": "? How the pre recomendation should be encoded? by GUID?",
+        "preRecommendations": [],
+        "isAssessment": true
+    },
+    "body": {
+        "~doc": "The models section includes data passed to",
+        "models": {
+            "question": {
+                "prompt": "Answer the following $expression",
+                "expression": "$num1 + $num2",
+                "num1": 5,
+                "num2": 4
+            }
+        },
+        "persenters": [
+            {
+                "id": "my_question",
+                "type": "TemplatedQuestion",
+                "config": {
+                    "template": "$question.prompt = ${sum:TextInput format:##} <br/> ${actionbar} <br/> ${feedback}",
+                    "~doc": "Optionally:"
+                }
+            },
+            {
+                "id": "sum",
+                "type": "TextInput",
+                "config": {
+                    "format": "##"
+                }
+            },
+            {
+                "id": "actionbar",
+                "type": "ActionBar",
+                "config": {
+                    "enabled": "submission|reset|read|hint"
+                }
+            },
+            {
+                "id": "feedback",
+                "type": "Feedback",
+                "config": {
+                    "display": "list"
+                }
+            }
+        ],
+        "policy": {
+            "maxAttempts": 10,
+            "~doc": "Otional - if present, each attempt will be timed in seconds",
+            "timed": 10,
+            "timeOverAction": "<action to take when time is over>"
+        },
+        "submissionEval": {
+            "engine": "ArithmeticExpression",
+            "correctAnswer": {
+                "sum": "9"
+            }
+        },
+        "feedback": [
+            {
+                "case": "$sum > $9",
+                "message": "Number too large"
+            },
+            {
+                "case": "$sum < $9",
+                "message": "Your anser $sum is too small"
+            }
+        ]
+    }
+}

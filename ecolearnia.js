@@ -3,23 +3,27 @@ var nconf = require('nconf');
 
 nconf.argv()
        .env()
-       .file({ file: './conf/cohevium.conf.json' });
+       .file({ file: './conf/ecolearnia.conf.json' });
 
 var port = nconf.get('port');
-var contentBaseDir = nconf.get('contentBaseDir');
 var logConf = nconf.get('log');
 
-var server = new Hapi.Server(port, {
-    cors: true
-});
+var server = new Hapi.Server();
+server.connection(
+    { 
+      port: port, 
+      labels: 'main',
+      routes: { cors: true } 
+    }
+  );
 
-server.pack.register([
-      { plugin: require("lout") },
-      { plugin: require("./index"), options: { contentBaseDir: contentBaseDir, log: logConf}
+server.register([
+      { register: require("lout") },
+      { register: require("./index"), options: { log: logConf}
     }
 ], function(err) {
     if (err) throw err;
     server.start(function() {
-        console.log("Cohevium server started @ " + server.info.uri);
+        console.log("EcoLearnia server started @ " + server.info.uri);
     });
 });

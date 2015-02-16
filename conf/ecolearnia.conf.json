@@ -1,0 +1,9 @@
+{
+	"port": 9099,
+	"repoBaseDir": null,
+
+	"log": {
+		"level": "debug",
+		"logToScreen": true
+	}
+}
