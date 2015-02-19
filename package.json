@@ -32,7 +32,8 @@
     "mongoose": "^3.8.23",
     "nconf": "^0.7.1",
     "node-uuid": "^1.4.2",
-    "promise": "^6.1.0"
+    "promise": "^6.1.0",
+    "when": "^3.7.2"
   },
   "devDependencies": {
     "chai": "^2.0.0",
