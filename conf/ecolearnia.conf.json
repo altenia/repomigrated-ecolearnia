@@ -3,7 +3,18 @@
 	"repoBaseDir": null,
 
 	"log": {
-		"level": "debug",
-		"logToScreen": true
+		"level": "info",
+		"name": "EcoLearnia",
+		"streams": [
+			{
+				"output": "file",
+				"type": "rotating-file",
+				"period": "1d",
+				"count": 5
+			},
+			{
+				"output": "stdout"
+			}
+		]
 	}
 }
