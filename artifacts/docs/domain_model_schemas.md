@@ -4,7 +4,8 @@ EcoLearnia Schemas
 EcoLearnia's domain model is consisted of following schemas:
 
 Content Template: Data in this category are created once and used to create courses.
-The Content Template has less changes over time. It can reprent a state's curricula.
+The Content Template are subject to seldom changes over time.
+It can represent a State's curriculum.
 
 - `ContentNode` - ContentNode is the structure that represents the inner node of the tree structure that represents a Course. The root node is always of kind "CourseTemplate" and the nodes that contains the ContentItem are of kind "Assignment"
 - `ContentItem` - A ContentItem contains details of specific learning content. The information in the ContentItem is used to render multiplicity of UI components that represents learning content. From the content structure point of view, it is the leaf node.
@@ -32,10 +33,10 @@ The Content JSON Spec
         "sid": "sequential (system) id",
         "uuid": "<uuid>",
         "parent": "<uuid>",
-        "createdBy": "2015-01-11T14:12:22",
+        "createdBy": "<uuid>",
         "createdAt": "2015-01-11T14:12:22",
+        "modifiedBy": "<uuid>",
         "modifiedAt": "2015-01-11T14:12:22",
-        "modifiedBy": "2015-01-11T14:12:22",
         "~doc": "If this content was originally copied from another content",
         "copiedFrom": "<uuid>",
         "metadata": {
@@ -45,7 +46,8 @@ The Content JSON Spec
                 "subjectArea": "",
                 "~doc": "Array of the topic hierarchy starting from the broadest to  specific",
                 "~doc": "Without including the subject and subjectArea",
-                "topic": [""]
+                "topicHierarchy": [""],
+                "tags": [""]
             },
 
             "~doc": "If this content was originally copied from another content",
@@ -75,29 +77,34 @@ The Content JSON Spec
 
             "~doc": "The presenters sections includes configuration information",
             "~doc": "for the UI components ",
-            "persenters":{
-                "my_question": {
+            "presenters":[
+                {
+                    "id": my_question",
                     "type": "TemplatedQuestion",
                     "config":{
                         "template": "$question.prompt = ${sum}",
                         "~doc": "Optionally:",
-                        "template": "$question.prompt = ${sum:TextInput format:##} <br/> ${actionbar} <br/> ${feedback}"
+                        "template": "$question.prompt = ${sum:TextInput format:##} <br/> ${actionbar} <br/> ${feedback}",
+                        "solution": "$solution"
                     }
                 },
                 "~doc": "The prefix 'in:' is a convention for input",
-                "sum": {
+                {
+                    "id": "sum",
                     "type": "TextInput",
                     "config": {
                         "format": "##"
                     }
                 },
-                "actionbar": {
+                {
+                    "id": "actionbar",
                     "type": "ActionBar",
                     "config": {
                         "enabled": "submission|reset|read|hint"
                     }
                 },
-                "feedback": {
+                {
+                    "id": feedback",
                     "type": "Feedback",
                     "config": {
                         "display": "list"
@@ -108,7 +115,7 @@ The Content JSON Spec
             "~doc": "The models section includes data passed to",
             "policy": {
                 "maxAttempts": 10,
-                "~doc": "Otional - if present, each attempt will be timed in seconds",
+                "~doc": "Optional - if present, each attempt will be timed in seconds",
                 "timed": 10,
                 "timeOverAction": "<action to take when time is over>"
             },
@@ -118,20 +125,24 @@ The Content JSON Spec
                 "engine": "ArithmeticExpression",
                 "correctAnswer": {
                     "sum": "9"
-                }
-            },
-
-            "~doc": "The models section includes data passed to",
-            "feedback": [
-                { 
-                    "case": "$sum > $9", 
-                    "message": "Number too large"
                 },
-                { 
-                    "case": "$sum < $9", 
-                    "message": "Your anser $sum is too small"
-                }
-            ]
+                "~doc": "The models section includes data passed to",
+
+                "feedback": [
+                    { 
+                        "case": "$sum > $9", 
+                        "message": "Number too large"
+                    },
+                    { 
+                        "case": "$sum < $9", 
+                        "message": "Your anser $sum is too small"
+                    }
+                ],
+                "solution": "<HTML>",
+                "hints": [
+                    "First hint"
+                ]
+            }
         }
     }
 
@@ -180,13 +191,13 @@ If a child's item type is 'ContentGen', at the moment of creating a Course, the 
                 {
                     "~doc": "The type is actually dictated by this object's kind property. If it is an Assignment, then the type must be Content, otherwise it is a ContentNode",
                     "type": "Node|Item|ContentGen",
-                    "uuid": "<content-uuid>",
+                    "item": "<content-uuid>",
                     "~doc": "Difficulty of the item in respect to the other items within this node"
                     "difficulty": "[0..1]",
 
                     "~doc": "For item of type ContentGen, instead of uuid:",
                     "gen": {
-                        "templateContentuuid": "<uuid>",
+                        "templateContentItem": "<uuid>",
                         "generator": {
                             "type": "NumGen",
                             "params": {
@@ -206,7 +217,7 @@ If a child's item type is 'ContentGen', at the moment of creating a Course, the 
 
 
 ## Course ##
-A realization of a CourseTempate.
+A realization of a CourseTemplate.
 
     {
         "sid": "sequential (system) id",
