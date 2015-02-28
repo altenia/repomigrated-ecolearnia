@@ -1,6 +1,5 @@
 {
     "uuid": "test",
-    "parent": "ntest",
     "metadata": {
         "learningArea": {
             "subject": "math",
