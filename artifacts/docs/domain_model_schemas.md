@@ -187,7 +187,7 @@ If a child's item type is 'ContentGen', at the moment of creating a Course, the 
         },
 
         "body": {
-            "items": [
+            "children": [
                 {
                     "~doc": "The type is actually dictated by this object's kind property. If it is an Assignment, then the type must be Content, otherwise it is a ContentNode",
                     "type": "Node|Item|ContentGen",
