@@ -187,10 +187,12 @@ If a child's item type is 'ContentGen', at the moment of creating a Course, the 
         },
 
         "body": {
-            "children": [
+            "~doc": "There is no foreign key for child nodes.",
+            "~doc": "Child nodes are obtained through the parent FK from the children",
+            "items": [
                 {
                     "~doc": "The type is actually dictated by this object's kind property. If it is an Assignment, then the type must be Content, otherwise it is a ContentNode",
-                    "type": "Node|Item|ContentGen",
+                    "type": "Item|ItemGen",
                     "item": "<content-uuid>",
                     "~doc": "Difficulty of the item in respect to the other items within this node"
                     "difficulty": "[0..1]",

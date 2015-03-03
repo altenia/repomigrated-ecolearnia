@@ -24,7 +24,7 @@
     },
     "body": {
         "~doc": "The models section includes data passed to",
-        "children": [
+        "items": [
         ]
     }
 }
