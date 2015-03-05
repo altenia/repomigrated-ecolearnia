@@ -154,14 +154,15 @@ The structure is always strict tree, no node or item can have more than one pare
 If a child's item type is 'ContentGen', at the moment of creating a Course, the AssinmentItem will be translated into multiple items based on the genration rule.
 
     {
-        "sid": "sequential (system) id",
         "uuid": "<uuid>",
-        "parent": "<uuid>",
-        "createdBy": "2015-01-11T14:12:22",
+        "refName": "M-AR-1", 
+        "parent": "<oid>",
+        "parentUuid": "<uuid>",
+        "createdBy": "oid",
         "createdAt": "2015-01-11T14:12:22",
+        "modifiedBy": "oid",
         "modifiedAt": "2015-01-11T14:12:22",
-        "modifiedBy": "2015-01-11T14:12:22",
-        "kind": "<CourseTemplate|Assignment>",
+        "kind": "<CourseTemplate|Container|Assignment>",
         "~doc": "If this content was originally copied from another content",
         "copiedFrom": "<uuid>",
 
@@ -193,7 +194,8 @@ If a child's item type is 'ContentGen', at the moment of creating a Course, the 
                 {
                     "~doc": "The type is actually dictated by this object's kind property. If it is an Assignment, then the type must be Content, otherwise it is a ContentNode",
                     "type": "Item|ItemGen",
-                    "item": "<content-uuid>",
+                    "item": "<oid>",
+                    "itemUuid": "<contentitem-uuid>",
                     "~doc": "Difficulty of the item in respect to the other items within this node"
                     "difficulty": "[0..1]",
 
@@ -219,49 +221,26 @@ If a child's item type is 'ContentGen', at the moment of creating a Course, the 
 
 
 ## Course ##
-A realization of a CourseTemplate.
-
-    {
-        "sid": "sequential (system) id",
-        "uuid": "<uuid>",
-        "courseNode": "<uuid>",
-        "createdAt": "2015-01-11T14:12:22",
-        "modifiedAt": "2015-01-11T14:12:22",
-        "title": "",
-        "description": "",
-        "website": "",
-        "learningArea": {
-            },
-        "institution": <if applicable>,
-        "instructors": [],
-        "openness": <for-general, private>
-        "status": <open-for-enrollment, started-accepting, started-not-accepting, closed>,
-        "preRecommendations": [],
-
-        "startTime": "2015-01-11T14:12:22",
-        "endTime": "2015-01-11T14:12:22",
-        "timezone": "<if applicable>",
-        "numEnrollment": <num stduents>,
-        
-    }
-
-## Assignment ##
 Realization of ContentNode of kind 'CourseTemplate'.
+Instead of reusing a AssignmentNode, which is analogus to ContentNode, we have
+a dedicated schema for course to include additional information.
 
     {
-        "sid": "sequential (system) id",
         "uuid": "<uuid>",
         "contentNode": "<uuid>",
+        "createdBy": "uuid",
         "createdAt": "2015-01-11T14:12:22",
+        "modifiedBy": "uuid",
         "modifiedAt": "2015-01-11T14:12:22",
+        "learningArea": {
+            },
         "title": "",
         "description": "",
         "website": "",
-        "learningArea": {
-            },
+
         "institution": <if applicable>,
-        "instructors": [],
-        "openness": <for-general, private>
+        "instructors": [<user-uuids>],
+        "openness": <for-general, private>,
         "status": <open-for-enrollment, started-accepting, started-not-accepting, closed>,
         "preRecommendations": [],
 
@@ -272,8 +251,10 @@ Realization of ContentNode of kind 'CourseTemplate'.
         
     }
 
+Q: Do we need internal nodes?
 
-## Assignment ##
+
+## AssignmentNode ##
 Realization of a ContentNode of kind 'Assignment'.
 
 Schema extends from ContentNode:
@@ -281,6 +262,7 @@ Schema extends from ContentNode:
     {
         "course": <uuid>,
         "~doc": "The content from which this assignment was created",
+        "~doc": "The kind is analogus: Container | Assignment",
         "~doc": "Property copiedFrom is the uuid of the ContentNode that this Assignment was copied from"
     }
 
@@ -292,7 +274,7 @@ Schema extends from ContentItem:
 
     {
         "course": <uuid>,
-        "~doc": "Property parent is the uuid of the Assignment tat this Item belongs to",
+        "~doc": "Property parent is the uuid of the Assignment that this AssignmentItem belongs to",
         "~doc": "Property copiedFrom is the uuid of the ContentNode tha this Assignment was copied from"
     }
 

@@ -12,7 +12,8 @@
         "copiedFrom": "GUID",
         "createdAt": "2015-01-11T14:12:22",
         "modifiedAt": "2015-01-11T14:12:22",
-        "authors": [
+        "~doc": "The authors array is list of names, not Object Id",
+        "authors": [    
             "Doe, John"
         ],
         "license": "Creative Commons",
