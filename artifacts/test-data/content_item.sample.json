@@ -1,5 +1,6 @@
 {
-    "uuid": "test",
+    "uuid": "test-item.01",
+    "refName": "test-item.01",
     "metadata": {
         "learningArea": {
             "subject": "math",

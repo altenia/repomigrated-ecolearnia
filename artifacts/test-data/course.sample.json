@@ -1,0 +1,8 @@
+{
+    "uuid": "test-node.01.a",
+    "contentNodeUuid": "test-node.01",
+    
+    "institution": "Mathnia University",
+    "instructors": [],
+    "timezone": "America/New_York"
+}

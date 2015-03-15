@@ -1,6 +1,6 @@
 {
-    "uuid": "test",
-    "kind": "Assignment",
+    "uuid": "test-item.01",
+    "refName": "test-item.01",
     "metadata": {
         "learningArea": {
             "subject": "math",
@@ -13,18 +13,15 @@
         "copiedFrom": "GUID",
         "createdAt": "2015-01-11T14:12:22",
         "modifiedAt": "2015-01-11T14:12:22",
-        "authors": [
+        "~doc": "The authors array is list of names, not Object Id",
+        "authors": [    
             "Doe, John"
         ],
         "license": "Creative Commons",
         "locale": "en_US",
         "title": "My First content item",
+        "~doc": "? How the pre recomendation should be encoded? by GUID?",
         "preRecommendations": [],
         "isAssessment": true
-    },
-    "body": {
-        "~doc": "The models section includes data passed to",
-        "items": [
-        ]
     }
 }
