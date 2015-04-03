@@ -16,11 +16,12 @@ Course Structure: Data in this category are created per course. The records have
 - `Assignment` - Assignment is a realization of ContentNode of kind "Assignment". 
 - `AssignmentItem` - AssignmentItem is a realization of ContentNode of kind "ContentItem". Although it is meant to be used as provided, the instructor is free to change the specific details of the item. 
 
-Learner Activity: Data in this category are created for each of the learner's action within a course.
+Learner's Activity: Data in this category are created for each of the learner's action within a course.
 
-- `AssignmentInstance` - When a learner access (opens) an Assignment (i.e. ContentNode of kind 'Assignment'), the system creates a record of this schema per ContentNode. A specific activity is registered in the Activity schema. The record of this schema includes the learner context, the Assignment, and Course. It also keeps the state of the last content accessed, which can be used for genaration of Contents.
-- `ItemInstance` -  For each AssignmentActivity, there is a multiplicity of Activities. An activity includes a referent to the ActivityNode and Content.
-- `ItemInstanceActivity` -  For each AssignmentActivity, there is a multiplicity of Activities. An activity includes a referent to the ActivityNode and Content.
+- `LearnerCourse` - Contextual data of a course to a specific learner. E.g. obtained time spent, score, etc. 
+- `LearnerAssignment` - When a learner access (opens) an Assignment (i.e. ContentNode of kind 'Assignment'), the system creates a record of this schema per ContentNode. A specific activity is registered in the Activity schema. The record of this schema includes the learner context, the Assignment, and Course. It also keeps the state of the last content accessed, which can be used for genaration of Contents.
+- `LearnerAssignmentItem` -  For each AssignmentActivity, there is a multiplicity of Activities. An activity includes a referent to the ActivityNode and Content.
+- `LearnerAssignmentItemActivity` -  For each AssignmentActivity, there is a multiplicity of Activities. An activity includes a referent to the ActivityNode and Content.
 
 
 ## ContentItem ##
