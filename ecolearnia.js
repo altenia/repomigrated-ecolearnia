@@ -19,8 +19,7 @@ server.connection(
 
 server.register([
       { register: require("lout") },
-      { register: require("./index"), options: { log: logConf}
-    }
+      { register: require("./index"), options: { log: logConf} }
 ], function(err) {
     if (err) throw err;
     server.start(function() {

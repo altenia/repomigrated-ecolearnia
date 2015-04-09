@@ -280,7 +280,7 @@ Schema extends from ContentItem:
     }
 
 
-## AssignmentInstance ##
+## LearnerAssignment ##
 Track of access to an Assignment by a learner. Keeps the assignment status, including the current working item (or in the case of adaptive, the information required to know the next item). 
 
     {
@@ -301,7 +301,7 @@ Track of access to an Assignment by a learner. Keeps the assignment status, incl
     }
 
 
-## ItemInstance ##
+## LearnerAssignmentItem ##
 AssignmentItem instantiated by a learner. The ContentItem is cached.
 
     {
@@ -322,7 +322,7 @@ AssignmentItem instantiated by a learner. The ContentItem is cached.
     }
 
 
-## ItemInstanceActivity ##
+## LearnerAssignmentItemActivity ##
 AssignmentItem instantiated by a learner. The ContentItem is cached.
 
     {
