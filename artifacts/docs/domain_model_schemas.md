@@ -26,7 +26,18 @@ Learner's Activity: Data in this category are created for each of the learner's 
 
 ## ContentItem ##
 A content is a self-contained information that can be rendered by a UI component. 
-When the contains variables in the template not assigned in the data / input properties, then it is called PartialContent (or AbstractContent)
+When the contains variables in the template not assigned in the data / input properties, then it is called PartialContent (or AbstractContent).
+
+The ContentItem's body is comprised of the follosing sections:
+- models: includes all domain data that is required to render a content. 
+- presenters: includes declaration of presentation methods of the models. 
+- processFlow: includes any other processing, e.g. randomizing certain data in the model.
+- policy: includes assessment policy parameters, e.g. allowed number of attempts. 
+- submissionEval: includes specification for submission evaluation. Defines which engine should evaluate the submission. 
+
+Note that it is possible for presenters to include configuration, but it is suggested to use model to define all data that can be used by other sections. For example the submissionEval can use model's data to calculate the correct value in case or simple arithmetics.
+
+* Whenever there is change in the JSON spec, make sure to update both the server schema and client model.
 
 The Content JSON Spec
 
@@ -38,20 +49,24 @@ The Content JSON Spec
         "createdAt": "2015-01-11T14:12:22",
         "modifiedBy": "<uuid>",
         "modifiedAt": "2015-01-11T14:12:22",
-        "~doc": "If this content was originally copied from another content",
+        "@doc": "If this content was originally copied from another content",
         "copiedFrom": "<uuid>",
         "metadata": {
-            "~doc": "The area in which the learner is engaged",
+            "@doc": "The area in which the learner is engaged",
             "learningArea": {
                 "subject": "math",
-                "subjectArea": "",
-                "~doc": "Array of the topic hierarchy starting from the broadest to  specific",
-                "~doc": "Without including the subject and subjectArea",
+                "subjectArea": "arithmetic",
+                "@doc": "Core Standards domain code (e.g. 3.NBT)", 
+                "domainCodeSource": "CommonCore",
+                "@doc": "Core Standards domain code (e.g. 3.NBT)", 
+                "domainCode": "arithmetic",
+                "@doc": "Array of the topic hierarchy starting from the broadest to  specific",
+                "@doc": "Without including the subject and subjectArea",
                 "topicHierarchy": [""],
                 "tags": [""]
             },
 
-            "~doc": "If this content was originally copied from another content",
+            "@doc": "If this content was originally copied from another content",
             "copiedFrom": "uuid",
             "createdAt": "2015-01-11T14:12:22",
             "modifiedAt": "2015-01-11T14:12:22",
@@ -60,15 +75,17 @@ The Content JSON Spec
             "license": "Creative Commons",
             "locale": "en_US",
             "title": "",
-            "~doc": "List of uuid which is recommended to take prior this ContentItem",
+            "@doc": "List of uuid which is recommended to take prior this ContentItem",
             "preRecommendations": [],
             "isAssessment": true
         },
 
         "body": {
-            "~doc": "The models section includes data passed to",
+            "@doc": "The models section includes domain data",
             "models": {
+                "@doc": "The question model is required for assessment item",
                 "question": {
+                    "@doc": "Within the question model, at minimum there is the prompt property",
                     "prompt": "Answer the following $expression",
                     "expression": "$num1 + $num2",
                     "num1": 5,
@@ -76,24 +93,21 @@ The Content JSON Spec
                 }
             },
 
-            "~doc": "The presenters sections includes configuration information",
-            "~doc": "for the UI components ",
+            "@doc": "The presenters section includes configuration information",
+            "@doc": "for the UI rendering",
             "presenters":[
                 {
                     "id": my_question",
-                    "type": "TemplatedQuestion",
+                    "type": "question.Templated",
                     "config":{
-                        "template": "$question.prompt = ${sum}",
-                        "~doc": "Optionally:",
-                        "template": "$question.prompt = ${sum:TextInput format:##} <br/> ${actionbar} <br/> ${feedback}",
-                        "solution": "$solution"
+                        "template": "$question.prompt = ${sum} <br/> ${actionbar} <br/> ${feedback}"
                     }
                 },
-                "~doc": "The prefix 'in:' is a convention for input",
                 {
                     "id": "sum",
-                    "type": "TextInput",
+                    "type": "input.Text",
                     "config": {
+                        "dataType": "integer",
                         "format": "##"
                     }
                 },
@@ -113,21 +127,31 @@ The Content JSON Spec
                 }
             },
 
-            "~doc": "The models section includes data passed to",
+            "@doc": "Optional additional processing. E.g. randomizing numbers prior rendering",
+            "processFlow": {
+                "beforeRender": {
+
+                    },
+                "afterSumission": {
+
+                }
+            },
+
+            "@doc": "Policy parameters for the assesmsent",
             "policy": {
                 "maxAttempts": 10,
-                "~doc": "Optional - if present, each attempt will be timed in seconds",
+                "@doc": "Optional - if present, each attempt will be timed in seconds",
                 "timed": 10,
                 "timeOverAction": "<action to take when time is over>"
             },
 
-            "~doc": "The models section includes data passed to",
+            "@doc": "Parameters for evalating learner's answer submission",
             "submissionEval": {
                 "engine": "ArithmeticExpression",
                 "correctAnswer": {
                     "sum": "9"
                 },
-                "~doc": "The models section includes data passed to",
+                "@doc": "The models section includes data passed to",
 
                 "feedback": [
                     { 
@@ -164,16 +188,16 @@ If a child's item type is 'ContentGen', at the moment of creating a Course, the 
         "modifiedBy": "oid",
         "modifiedAt": "2015-01-11T14:12:22",
         "kind": "<CourseTemplate|Container|Assignment>",
-        "~doc": "If this content was originally copied from another content",
+        "@doc": "If this content was originally copied from another content",
         "copiedFrom": "<uuid>",
 
         "metadata": {
-            "~doc": "The area in which the learner is engaged",
+            "@doc": "The area in which the learner is engaged",
             "learningArea": {
                 "subject": "math",
                 "subjectArea": "",
-                "~doc": "Array of the topic hierarchy starting from the broadest to  specific",
-                "~doc": "Without including the subject and subjectArea",
+                "@doc": "Array of the topic hierarchy starting from the broadest to  specific",
+                "@doc": "Without including the subject and subjectArea",
                 "topic": [""]
             },
 
@@ -183,24 +207,24 @@ If a child's item type is 'ContentGen', at the moment of creating a Course, the 
             "license": "Creative Commons",
             "locale": "en_US",
             "title": "",
-            "~doc": "List of uuids of content nodes that is recommened to take prior this one",
+            "@doc": "List of uuids of content nodes that is recommened to take prior this one",
             "preRecommendations": [],
             "isAssessment": true
         },
 
         "body": {
-            "~doc": "There is no foreign key for child nodes.",
-            "~doc": "Child nodes are obtained through the parent FK from the children",
+            "@doc": "There is no foreign key for child nodes.",
+            "@doc": "Child nodes are obtained through the parent FK from the children",
             "items": [
                 {
-                    "~doc": "The type is actually dictated by this object's kind property. If it is an Assignment, then the type must be Content, otherwise it is a ContentNode",
+                    "@doc": "The type is actually dictated by this object's kind property. If it is an Assignment, then the type must be Content, otherwise it is a ContentNode",
                     "type": "Item|ItemGen",
                     "item": "<oid>",
                     "itemUuid": "<contentitem-uuid>",
-                    "~doc": "Difficulty of the item in respect to the other items within this node"
+                    "@doc": "Difficulty of the item in respect to the other items within this node"
                     "difficulty": "[0..1]",
 
-                    "~doc": "For item of type ContentGen, instead of uuid:",
+                    "@doc": "For item of type ContentGen, instead of uuid:",
                     "gen": {
                         "templateContentItem": "<uuid>",
                         "generator": {
@@ -262,9 +286,9 @@ Schema extends from ContentNode:
 
     {
         "course": <uuid>,
-        "~doc": "The content from which this assignment was created",
-        "~doc": "The kind is analogus: Container | Assignment",
-        "~doc": "Property copiedFrom is the uuid of the ContentNode that this Assignment was copied from"
+        "@doc": "The content from which this assignment was created",
+        "@doc": "The kind is analogus: Container | Assignment",
+        "@doc": "Property copiedFrom is the uuid of the ContentNode that this Assignment was copied from"
     }
 
 
@@ -275,8 +299,8 @@ Schema extends from ContentItem:
 
     {
         "course": <uuid>,
-        "~doc": "Property parent is the uuid of the Assignment that this AssignmentItem belongs to",
-        "~doc": "Property copiedFrom is the uuid of the ContentNode tha this Assignment was copied from"
+        "@doc": "Property parent is the uuid of the Assignment that this AssignmentItem belongs to",
+        "@doc": "Property copiedFrom is the uuid of the ContentNode tha this Assignment was copied from"
     }
 
 
