@@ -35,6 +35,7 @@
     "nconf": "^0.7.1",
     "node-uuid": "^1.4.2",
     "promise": "^6.1.0",
+    "themis": "^1.1.5",
     "when": "^3.7.2"
   },
   "devDependencies": {

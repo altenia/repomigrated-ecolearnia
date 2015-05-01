@@ -42,7 +42,8 @@ Note that it is possible for presenters to include configuration, but it is sugg
 The Content JSON Spec
 
     {
-        "sid": "sequential (system) id",
+        "sid": "System id",
+        "realmUuid": "uuid of the space where the uuid is unique",
         "uuid": "<uuid>",
         "parent": "<uuid>",
         "createdBy": "<uuid>",
@@ -179,6 +180,7 @@ The structure is always strict tree, no node or item can have more than one pare
 If a child's item type is 'ContentGen', at the moment of creating a Course, the AssinmentItem will be translated into multiple items based on the genration rule.
 
     {
+        "realmUuid": "uuid of the space where the uuid is unique",
         "uuid": "<uuid>",
         "refName": "M-AR-1", 
         "parent": "<oid>",
