@@ -94,9 +94,9 @@ The Content JSON Spec
                 }
             },
 
-            "@doc": "The presenters section includes configuration information",
-            "@doc": "for the UI rendering",
-            "presenters":[
+            "@doc": "The component section includes specification for each of the ",
+            "@doc": "interactive (UI) components",
+            "components":[
                 {
                     "id": my_question",
                     "type": "question.Templated",
@@ -126,6 +126,14 @@ The Content JSON Spec
                         "display": "list"
                     }
                 }
+            ],
+
+            "actions": {
+                "showSolution": "4 + 4 + 1 = 9",
+                "!doc": "hints is an array in the order that is shown per attempt failure",
+                "showHints": [
+                    "How can 5 be decomposed?"
+                    ]
             },
 
             "@doc": "Optional additional processing. E.g. randomizing numbers prior rendering",
