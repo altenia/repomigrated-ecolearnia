@@ -101,7 +101,7 @@ The Content JSON Spec
                     "id": my_question",
                     "type": "question.Templated",
                     "config":{
-                        "template": "$question.prompt = ${sum} <br/> ${actionbar} <br/> ${feedback}"
+                        "template": "{{question.prompt}}  {{sum}} <br/> ${actionbar} <br/> ${feedback}"
                     }
                 },
                 {
