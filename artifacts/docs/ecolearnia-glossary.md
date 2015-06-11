@@ -11,6 +11,8 @@ An assessment is a specific type of content.
 
 ## Content Item
 
+## Course
+
 ## Assessment
 
-## 
+## Assessment Item

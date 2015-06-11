@@ -28,4 +28,9 @@ node_modules
 .lock-wscript
 
 # IDE
+*.log
+*.log.*
+
+
+# IDE
 .idea
