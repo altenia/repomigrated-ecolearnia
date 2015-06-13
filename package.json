@@ -23,6 +23,7 @@
   "homepage": "https://github.com/altenia/ecolearnia",
   "dependencies": {
     "async": "^0.9.0",
+    "bluebird": "^2.9.27",
     "bunyan": "^1.3.3",
     "fast-json-patch": "^0.5.1",
     "handlebars": "^3.0.0",
