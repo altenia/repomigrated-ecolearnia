@@ -1,0 +1,113 @@
+{
+    "uuid": "test-item.01",
+    "refName": "test-item.01",
+    "metadata": {
+        "learningArea": {
+            "subject": "math",
+            "subjectArea": "arithmetic",
+            "topicHierarchy": [
+                "addition", "addition-2digits"
+            ],
+            "tags": ["1G"]
+        },
+        "copiedFrom": "GUID",
+        "createdAt": "2015-01-11T14:12:22",
+        "modifiedAt": "2015-01-11T14:12:22",
+        "~doc": "The authors array is list of names, not Object Id",
+        "authors": [    
+            "Doe, John"
+        ],
+        "license": "Creative Commons",
+        "locale": "en_US",
+        "title": "My First content item",
+        "~doc": "? How the pre recomendation should be encoded? by GUID?",
+        "preRecommendations": [],
+        "isAssessment": true
+    },
+    "body": {
+        "~doc": "The models section includes data passed to",
+        "models": {
+            "question": {
+                "prompt": "What are the largest countries in order",
+                "asking": [
+                    {
+                        "key": "Brazil",
+                        "label": "Brazil"
+                    },
+                    {
+                        "key": "Canada",
+                        "key": "Canada"
+                    },
+                    {
+                        "key": "India",
+                        "key": "India"
+                    }
+
+                ]
+            }
+        },
+        "datatype": {
+
+            },
+        "presenters": [
+            {
+                "id": "my_question",
+                "type": "TemplatedQuestion",
+                "config": {
+                    "template": "${.question.prompt} = ${sum} <br/> ${actionbar} <br/> ${feedback}",
+                    "~doc": "Optionally:"
+                }
+            },
+            {
+                "id": "sum",
+                "type": "TextInput",
+                "var": ""
+                "config": {
+                    "format": "##"
+                }
+            },
+            {
+                "id": "actionbar",
+                "type": "ActionBar",
+                "config": {
+                    "enabled": "submission|reset|read|hint"
+                }
+            },
+            {
+                "id": "feedback",
+                "type": "Feedback",
+                "config": {
+                    "display": "list"
+                }
+            }
+        ],
+        "policy": {
+            "maxAttempts": 10,
+            "!doc": "Optional - if present, each attempt will be timed in seconds",
+            "timed": 10,
+            "timeOverAction": "<action to take when time is over>"
+        },
+        "submissionEval": {
+            "engine": "ArithmeticExpression",
+            "correctAnswer": {
+                "sum": "9"
+            },
+            "feedback": [
+                {
+                    "case": "$sum > $9",
+                    "message": "Number too large"
+                },
+                {
+                    "case": "$sum < $9",
+                    "message": "Your anser $sum is too small"
+                }
+            ],
+            "solution": "4 + 4 + 1 = 9",
+            "!doc": "hints is an array in the order that is shown per attemp failure",
+            "hints": [
+
+                "How can 5 be decomposed?"
+                ]
+        }
+    }
+}
