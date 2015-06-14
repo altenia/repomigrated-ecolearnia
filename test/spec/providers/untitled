@@ -9,7 +9,7 @@ var utils = require('../../../lib/utils/utils');
 //var courseManager = require('../../providers/coursemanager').getManager();
 
 
-describe('CourseManager', function () {
+describe('HapiResource', function () {
 
 	beforeEach(function () {
 
@@ -24,7 +24,7 @@ describe('CourseManager', function () {
 		});
 	});
 
-	describe('CRUD operations', function () {
+	describe('Operations', function () {
 		it.skip('should create', function (done) {
 			done();
 		});
