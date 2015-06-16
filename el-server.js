@@ -1,12 +1,8 @@
 var Hapi = require("hapi");
-var nconf = require('nconf');
+var utils = require('./lib/utils/utils');
 
-nconf.argv()
-       .env()
-       .file({ file: './conf/ecolearnia.conf.json' });
-
-var port = nconf.get('port');
-var logConf = nconf.get('log');
+var port = utils.getConfigProperty('port');
+var logConf = utils.getConfigProperty('log');
 
 var server = new Hapi.Server();
 server.connection(

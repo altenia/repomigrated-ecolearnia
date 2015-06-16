@@ -1,0 +1,14 @@
+{
+	"prop1": 123,
+	"prop2": "test-prop-val",
+
+	"log": {
+		"level": "warn",
+		"name": "Test",
+		"streams": [
+			{
+				"output": "stdout"
+			}
+		]
+	}
+}
