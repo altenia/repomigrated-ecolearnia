@@ -1,10 +1,16 @@
 {
     "uuid": "test-item.01",
     "refName": "test-item.01",
+
     "parent": "54f7d34e844a9c38137aa502",
     "parentUuid": "test-node.01.01",
-    "kind": "submittable",
+    "createdBy": "a4f7d34e844a9c38137aa504",
+    "createdAt": "2015-01-11T14:12:22",
+    "modifiedAt": "2015-01-11T14:12:22",
+
+    "kind": "Item",
     "metadata": {
+        "title": "My First content item",
         "learningArea": {
             "subject": "math",
             "subjectArea": "arithmetic",
@@ -12,25 +18,22 @@
             "domainCode": "AO.1",
             "topicHierarchy": [
                 "addition", "addition-2digits"
-            ],
-            "tags": ["1G"]
+            ]
         },
+        "tags": ["1G"],
         "copiedFrom": "GUID",
-        "createdAt": "2015-01-11T14:12:22",
-        "modifiedAt": "2015-01-11T14:12:22",
         "~doc": "The authors array is list of names, not Object Id",
         "authors": [    
             "Doe, John"
         ],
         "license": "Creative Commons",
         "locale": "en_US",
-        "title": "My First content item",
         "~doc": "? How the pre recomendation should be encoded? by GUID?",
         "preRecommendations": [],
         "isAssessment": true
     },
     "body": {
-        "models": {
+        "definition": {
             "question": {
                 "prompt": "What are possible answer for square root of 4?",
                 "asking": [
